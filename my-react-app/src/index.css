@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom gold color and background */
+.text-gold { color: #FFD700; }
+.bg-gold { background-color: #FFD700; }
+
+/* Animations */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 1s ease-out; }
+.animate-fade-in-slow { animation: fade-in 2s ease-out; }
+.animate-fade-in-up { animation: fade-in 1.5s cubic-bezier(.4,0,.2,1); }
+
+/* Portfolio card slide-up effect */
+.portfolio-card-desc {
+  transform: translateY(100%);
+  transition: transform 0.3s;
+  height: 50%;
+  bottom: 0;
+  /* Blurred gradient background */
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 60%, rgba(0,0,0,0.3) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.portfolio-card:hover .portfolio-card-desc {
+  transform: translateY(10%);
+}
