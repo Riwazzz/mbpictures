@@ -29,9 +29,10 @@ const Contact = () => {
           </button>
         </form>
         <div className="mt-10 text-center">
-          <p className="font-semibold">
-            Office: 125 Barker St, London, Canada
-          </p>
+          <p className="font-semibold">📍 MB Pictures Canada Inc.</p>
+          <p className="font-semibold">125 Barker St, London, Ontario, Canada</p>
+          <p className="mt-2">Email: info@mbpicturescanada.com</p>
+          <p>📞 Phone: +1 (XXX) XXX-XXXX</p>
           <div className="mt-2">
             <iframe
               title="Office Location"

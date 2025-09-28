@@ -64,17 +64,17 @@ const Header = () => {
       
       {/* Navlinks (center) */}
       <nav className="hidden md:flex gap-8 mx-auto">
-        {["Home", "Services", "Portfolio", "Events"].map((link) => (
+        {["Home", "Line Production", "Services", "Portfolio", "News", "Events"].map((link) => (
           <a
             key={link}
-            href={`#${link.toLowerCase()}`}
+            href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
             className={`font-medium hover:text-yellow-400 transition text-lg ${
               headerBg ? "text-black/80" : "text-white"
             }`}
-            onClick={(e) => handleNavClick(e, link.toLowerCase())}
+            onClick={(e) => handleNavClick(e, link.toLowerCase().replace(/\s+/g, '-'))}
             onMouseEnter={() => {
               if (window.innerWidth >= 768) {
-                const section = document.getElementById(link.toLowerCase());
+                const section = document.getElementById(link.toLowerCase().replace(/\s+/g, '-'));
                 if (section) {
                   section.scrollIntoView({ behavior: "smooth" });
                 }
@@ -118,20 +118,24 @@ const Header = () => {
           id="hamburger-menu"
           className="hidden absolute right-0 top-14 bg-black/95 border border-gold rounded-lg shadow-lg py-4 px-8 flex flex-col gap-4 z-50 min-w-[160px]"
         >
-          <a
-            href="#about"
-            className="text-gold font-medium hover:text-yellow-400 transition text-lg"
-            onClick={(e) => handleMobileMenuClick(e, "about")}
-          >
-            About
-          </a>
-          <a
-            href="#contact"
-            className="text-gold font-medium hover:text-yellow-400 transition text-lg"
-            onClick={(e) => handleMobileMenuClick(e, "contact")}
-          >
-            Contact
-          </a>
+          {[
+            { id: 'about', label: 'About' },
+            { id: 'line-production', label: 'Line Production' },
+            { id: 'services', label: 'Services' },
+            { id: 'portfolio', label: 'Portfolio' },
+            { id: 'news', label: 'News' },
+            { id: 'events', label: 'Events' },
+            { id: 'contact', label: 'Contact' }
+          ].map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className="text-gold font-medium hover:text-yellow-400 transition text-lg"
+              onClick={(e) => handleMobileMenuClick(e, item.id)}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
       </div>
     </header>

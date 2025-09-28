@@ -22,6 +22,9 @@ export const services = [
   "Feature Films",
   "Shorts",
   "Music Videos",
+  "Documentaries",
+  "Post-Production",
+  "Casting",
   "Daily Programs",
   "Line Producing",
   "Distribution"

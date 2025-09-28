@@ -6,3 +6,5 @@ export { default as Portfolio } from './Portfolio';
 export { default as Events } from './Events';
 export { default as Contact } from './Contact';
 export { default as Footer } from './Footer';
+export { default as LineProduction } from './LineProduction';
+export { default as News } from './News';

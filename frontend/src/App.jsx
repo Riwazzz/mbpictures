@@ -3,8 +3,10 @@ import {
   Header,
   Hero,
   About,
+  LineProduction,
   Services,
   Portfolio,
+  News,
   Events,
   Contact,
   Footer
@@ -16,8 +18,10 @@ const App = () => {
       <Header />
       <Hero />
       <About />
+      <LineProduction />
       <Services />
       <Portfolio />
+      <News />
       <Events />
       <Contact />
       <Footer />
