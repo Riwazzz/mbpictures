@@ -8,3 +8,5 @@ export { default as Contact } from './Contact';
 export { default as Footer } from './Footer';
 export { default as LineProduction } from './LineProduction';
 export { default as News } from './News';
+export { default as Intro } from './Intro';
+export { default as ScrollToTop } from './ScrollToTop';

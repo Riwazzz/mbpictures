@@ -8,12 +8,8 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // Show/hide header on scroll direction
-      if (currentScrollY > lastScrollY.current && currentScrollY > 80) {
-        setShowHeader(false); // scroll down
-      } else {
-        setShowHeader(true); // scroll up
-      }
+      // Always show header regardless of scroll direction
+      setShowHeader(true);
       lastScrollY.current = currentScrollY;
       // Toggle header background if not in hero section
       setHeaderBg(currentScrollY > window.innerHeight * 0.7);
@@ -68,18 +64,10 @@ const Header = () => {
           <a
             key={link}
             href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
-            className={`font-medium hover:text-yellow-400 transition text-lg ${
+            className={`font-medium hover:text-yellow-400 transition text-base ${
               headerBg ? "text-black/80" : "text-white"
             }`}
             onClick={(e) => handleNavClick(e, link.toLowerCase().replace(/\s+/g, '-'))}
-            onMouseEnter={() => {
-              if (window.innerWidth >= 768) {
-                const section = document.getElementById(link.toLowerCase().replace(/\s+/g, '-'));
-                if (section) {
-                  section.scrollIntoView({ behavior: "smooth" });
-                }
-              }
-            }}
           >
             {link}
           </a>
@@ -130,7 +118,7 @@ const Header = () => {
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="text-gold font-medium hover:text-yellow-400 transition text-lg"
+              className="text-gold font-medium hover:text-yellow-400 transition text-base"
               onClick={(e) => handleMobileMenuClick(e, item.id)}
             >
               {item.label}

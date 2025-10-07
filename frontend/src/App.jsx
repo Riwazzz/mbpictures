@@ -1,23 +1,26 @@
 import React from "react";
 import {
   Header,
-  Hero,
-  About,
   LineProduction,
   Services,
   Portfolio,
   News,
   Events,
   Contact,
-  Footer
+  Footer,
+  Intro,
+  ScrollToTop
 } from "./components";
+import Cursor from "./components/Cursor";
+import HeroAboutTransition from "./components/HeroAboutTransition";
 
 const App = () => {
   return (
     <div className="bg-gradient-to-br from-black via-zinc-900 to-black min-h-screen text-gold font-sans">
+      <Cursor />
+      <Intro />
       <Header />
-      <Hero />
-      <About />
+      <HeroAboutTransition />
       <LineProduction />
       <Services />
       <Portfolio />
@@ -25,6 +28,7 @@ const App = () => {
       <Events />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

@@ -25,6 +25,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Prevent background scrolling while intro shows */
+.intro-lock {
+  overflow: hidden !important;
+  height: 100vh;
+}
+
 /* Custom gold color and background */
 .text-gold { color: #FFD700; }
 .bg-gold { background-color: #FFD700; }
@@ -52,3 +58,110 @@ body {
 .portfolio-card:hover .portfolio-card-desc {
   transform: translateY(10%);
 }
+
+/* Intro specific */
+@keyframes intro-logo-reveal {
+  0% { letter-spacing: 1.2em; opacity: 0; filter: blur(6px); }
+  40% { opacity: 1; filter: blur(0); }
+  100% { letter-spacing: 0.2em; opacity: 1; }
+}
+.intro-logo { animation: intro-logo-reveal 1.8s ease-out both; }
+
+@keyframes intro-tagline-fade {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.intro-tagline { animation: intro-tagline-fade 1s 1.2s ease-out both; }
+
+/* Subtle film grain texture */
+.intro-filmgrain {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 0.5px, transparent 0.5px);
+  background-size: 2px 2px;
+  animation: intro-grain-move 1.2s steps(2) infinite;
+}
+@keyframes intro-grain-move {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(-10px, 6px); }
+  50% { transform: translate(8px, -4px); }
+  75% { transform: translate(-6px, 10px); }
+  100% { transform: translate(0,0); }
+}
+
+/* Custom floating cursor for elements with [data-cursor] */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: transform 120ms ease, opacity 160ms ease, background 200ms ease;
+  mix-blend-mode: normal;
+  backdrop-filter: blur(2px);
+  transform: translate(-50%, -50%) scale(0.95);
+}
+.custom-cursor .cursor-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  /* neutral base for default state (overridden below) */
+  background: rgba(200,200,200,0.9);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.22), 0 0 8px rgba(255,255,255,0.02) inset;
+  opacity: 0.95;
+}
+.custom-cursor .cursor-label {
+  position: relative;
+  z-index: 2;
+  font-size: 11px;
+  color: rgba(255,255,255,0.95); /* white by default when visible on target */
+  font-weight: 800;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  user-select: none;
+  opacity: 0; /* hidden except on targets */
+}
+
+/* Small visible state tweak */
+.custom-cursor {
+  opacity: 0;
+}
+.custom-cursor.visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1; /* fully visible for clarity */
+}
+
+/* When not hovering data-cursor, hide default pointer for cleaner effect on target elements */
+[data-cursor] { cursor: none; }
+
+/* Hide native cursor across the site to use the custom cursor, but allow text inputs and selects to keep native cursor for accessibility */
+* { cursor: none; }
+input, textarea, select { cursor: auto; }
+
+/* Default gray, slightly blurred circular cursor */
+.custom-cursor.is-default .cursor-ring {
+  /* small gray blurred default cursor */
+  background: radial-gradient(circle at 30% 30%, rgba(240,240,240,0.95), rgba(210,210,210,0.9) 50%, rgba(180,180,180,0.86) 100%);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.24), 0 0 10px rgba(255,255,255,0.02) inset;
+  filter: blur(3px);
+  opacity: 0.95;
+}
+
+/* Target state: colorful circle with visible 'view' label */
+.custom-cursor.is-target {
+  width: 36px;
+  height: 36px;
+}
+.custom-cursor.is-target .cursor-ring {
+  /* colorful gradient like the original hover effect */
+  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.14), rgba(255,200,0,0.18) 18%, rgba(189,52,254,0.14) 70%), linear-gradient(135deg, rgba(255,150,0,0.16), rgba(189,52,254,0.12));
+  box-shadow: 0 10px 30px rgba(189,52,254,0.12), 0 2px 10px rgba(0,0,0,0.35) inset;
+  filter: blur(1.2px);
+}
+.custom-cursor.is-target .cursor-label {
+  font-size: 11px;
+  opacity: 1;
+}
+
